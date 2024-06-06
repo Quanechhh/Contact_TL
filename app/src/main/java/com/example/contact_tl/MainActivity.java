@@ -1,7 +1,9 @@
 package com.example.contact_tl;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -19,14 +21,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment selectedFragment = null;
-                switch (item.getItemId()) {
-                    case R.id.navigation_departments:
-                        selectedFragment = new DepartmentListFragment();
-                        break;
-                    case R.id.navigation_employees:
-                        selectedFragment = new EmployeeListFragment();
-                        break;
+
+                if (item.getItemId() == R.id.navigation_departments) {
+                    selectedFragment = new DepartmentListFragment();
+                } else if (item.getItemId() == R.id.navigation_employees) {
+                    selectedFragment = new EmployeeListFragment();
                 }
+
                 if (selectedFragment != null) {
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.frame_container, selectedFragment);
@@ -40,5 +41,22 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             navigation.setSelectedItemId(R.id.navigation_departments);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_add) {
+            // Handle the add action (e.g., open a dialog to add a new contact)
+            Toast.makeText(this, "Add new contact", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
