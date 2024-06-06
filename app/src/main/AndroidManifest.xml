@@ -26,13 +26,13 @@
             android:name=".EmployeeDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".UnitDetailActivity"
+            android:name=".DepartmentDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".EmployeeListActivity"
+            android:name=".EmployeeListFragment"
             android:exported="false" />
         <activity
-            android:name=".UnitListActivity"
+            android:name=".DepartmentListFragment"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
