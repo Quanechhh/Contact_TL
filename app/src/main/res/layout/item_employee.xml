@@ -6,18 +6,17 @@
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/department_name"
+        android:id="@+id/employee_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Department Name"
+        android:text="Employee Name"
         android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/department_details"
+        android:id="@+id/employee_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Department Details"
-        android:textSize="14sp"
-        android:layout_marginTop="4dp" />
+        android:text="Employee Title"
+        android:textSize="16sp" />
 </LinearLayout>

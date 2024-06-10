@@ -8,47 +8,50 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
-public class DepartmentAdapter extends RecyclerView.Adapter<DepartmentAdapter.ViewHolder> {
-    private List<Department> departments;
+public class DepartmentAdapter extends RecyclerView.Adapter<DepartmentAdapter.DepartmentViewHolder> {
+
+    private List<Department> departmentList;
     private OnDepartmentClickListener onDepartmentClickListener;
 
-    public interface OnDepartmentClickListener {
-        void onDepartmentClick(Department department);
-    }
-
-    public DepartmentAdapter(List<Department> departments, OnDepartmentClickListener listener) {
-        this.departments = departments;
-        this.onDepartmentClickListener = listener;
+    public DepartmentAdapter(List<Department> departmentList, OnDepartmentClickListener onDepartmentClickListener) {
+        this.departmentList = departmentList;
+        this.onDepartmentClickListener = onDepartmentClickListener;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.department_item, parent, false);
-        return new ViewHolder(view);
+    public DepartmentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_department, parent, false);
+        return new DepartmentViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Department department = departments.get(position);
-        holder.nameTextView.setText(department.getName());
-        holder.detailsTextView.setText(department.getDetails());
+    public void onBindViewHolder(@NonNull DepartmentViewHolder holder, int position) {
+        Department department = departmentList.get(position);
+        holder.departmentName.setText(department.getName());
+        holder.departmentDetails.setText(department.getDetails());
+
         holder.itemView.setOnClickListener(v -> onDepartmentClickListener.onDepartmentClick(department));
     }
 
     @Override
     public int getItemCount() {
-        return departments.size();
+        return departmentList.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView nameTextView;
-        TextView detailsTextView;
+    static class DepartmentViewHolder extends RecyclerView.ViewHolder {
+        TextView departmentName;
+        TextView departmentDetails;
 
-        ViewHolder(View itemView) {
+        DepartmentViewHolder(View itemView) {
             super(itemView);
-            nameTextView = itemView.findViewById(R.id.department_name);
-            detailsTextView = itemView.findViewById(R.id.department_details);
+            departmentName = itemView.findViewById(R.id.department_name);
+            departmentDetails = itemView.findViewById(R.id.department_details);
         }
+    }
+
+    public interface OnDepartmentClickListener {
+        void onDepartmentClick(Department department);
     }
 }
